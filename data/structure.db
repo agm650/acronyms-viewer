@@ -1,0 +1,34 @@
+CREATE TABLE acronym (
+    id INTEGER PRIMARY KEY,
+    acronym TEXT NOT NULL,
+    description TEXT NOT NULL,
+    contributor TEXT
+);
+
+CREATE VIRTUAL TABLE acronym_fts USING fts5(
+    acronym,
+    description,
+    contributor UNINDEXED,
+    content='acronym',
+    content_rowid='id'
+);
+
+CREATE TRIGGER acronym_ai AFTER INSERT ON acronym
+    BEGIN
+        INSERT INTO acronym_fts (rowid, acronym, description)
+        VALUES (new.id, new.acronym, new.description);
+    END;
+
+CREATE TRIGGER acronym_ad AFTER DELETE ON acronym
+    BEGIN
+        INSERT INTO acronym_fts (acronym_fts, rowid, acronym, description)
+        VALUES ('delete', old.id, old.acronym, old.description);
+    END;
+
+CREATE TRIGGER acronym_au AFTER UPDATE ON acronym
+    BEGIN
+        INSERT INTO acronym_fts (acronym_fts, rowid, acronym, description)
+        VALUES ('delete', old.id, old.acronym, old.description);
+        INSERT INTO acronym_fts (rowid, acronym, description)
+        VALUES (new.id, new.acronym, new.description);
+    END;
