@@ -1,0 +1,20 @@
+div.header { position:absolute; top:0px; left:0px; width:100%; height:60px; background-color:white; border-bottom-style: solid; border-bottom-color: rgb(26,40,85);}
+p.title {text-align:left; padding-left:30px; font-size: 24px; float:left; position: relative; top: -10px;}
+body > div.header > svg {float:left; display: block; top: 15px; position: relative; max-width:300px; max-height:30px;}
+form.search {text-align:right; padding-top:30px; padding-right:30px; font-size: 20px;float:right; position: relative;top: -10px;}
+
+div.sommaire {position: absolute; top: 60px; right: 80%; left: 0%; bottom: 20px; width:15%; background-color:rgb(26,40,85); color:white;}
+div.sommaire a {color: #5dbfd4;}
+div.sommaire a:hover {color: #1a2856; background-color:#5dbfd4;}
+
+div.main { position:absolute; top:60px; bottom:20px; right:0%; width:85%; overflow:auto;}
+div.hspacing { height: 20px; }
+
+
+div.task {position:relative; margin-top:5px;clear:both;}
+p.date {box-flex: 1.0;width:10%; float:left;clear:left;}
+p.user {box-flex: 1.0;width:10%; float:left;}
+p.content {box-flex: 1.0;width:80%; float:left;}
+
+div.footer {position:absolute; bottom:0px; left:0px; width:100%; height:20px; background-color:rgb(26,40,85); color:white; text-align: center;}
+

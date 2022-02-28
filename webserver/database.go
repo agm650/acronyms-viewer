@@ -152,7 +152,11 @@ func addDefinition(acro string, definition string, contrib string) (int64, error
 	}
 	defer stmt.Close()
 
-	result, err := stmt.Exec(acro)
+	var contributor *string = nil
+	if len(contrib) > 0 {
+		contributor = &contrib
+	}
+	result, err := stmt.Exec(acro, definition, contributor)
 	if err != nil {
 		return -1, err
 	}

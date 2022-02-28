@@ -22,8 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import "github.com/agm650/acronyms-viewer/cmd"
+import (
+	"embed"
+
+	"github.com/agm650/acronyms-viewer/cmd"
+)
+
+//go:embed embed/*
+
+var content embed.FS
 
 func main() {
-	cmd.Execute()
+	cmd.Execute(&content)
 }

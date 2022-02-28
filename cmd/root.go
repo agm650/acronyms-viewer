@@ -23,6 +23,7 @@ THE SOFTWARE.
 */
 
 import (
+	"embed"
 	"fmt"
 	"os"
 
@@ -34,6 +35,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+var webContent *embed.FS
 var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
@@ -50,13 +52,14 @@ to quickly create a Cobra application.`,
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		log.SetLevel(log.DebugLevel)
-		webserver.StartServer(8080, "./database.db")
+		webserver.StartServer(8080, webContent, "./database.db")
 	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
+func Execute(content *embed.FS) {
+	webContent = content
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
