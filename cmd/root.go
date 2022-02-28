@@ -52,7 +52,11 @@ to quickly create a Cobra application.`,
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		log.SetLevel(log.DebugLevel)
-		webserver.StartServer(8080, webContent, "./database.db")
+		err := webserver.StartServer(8080, webContent, "./database.db")
+		if err != nil {
+			fmt.Println("Error when starting server: " + err.Error())
+			os.Exit(2)
+		}
 	},
 }
 
