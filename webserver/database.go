@@ -106,8 +106,11 @@ func loadDB(path string) error {
 	return err
 }
 
-func closeDB() error {
-	return AcroDB.Close()
+func closeDB() {
+	err := AcroDB.Close()
+	if err != nil {
+		return
+	}
 }
 
 func getDefinition(acro string) ([]string, error) {
