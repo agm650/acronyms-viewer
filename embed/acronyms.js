@@ -11,7 +11,7 @@ function sreachAcronym() {
   - searchItem
   */
   var searchElement = trim(this.document.getElementById('searchItem').value);
-  alert("Searching for: " + searchElement);
+  // alert("Searching for: " + searchElement);
 
   if(searchElement.length == 0) {
     errorCount++;
@@ -38,7 +38,7 @@ function sreachAcronym() {
     // Clear content
     this.document.getElementById('main_content').innerHTML = "";
     defSection = document.createElement("p");
-    defSection.appendChild(document.createTextNode("Definitions pour <b>" + jsonResponse.name + "</b>"));
+    defSection.appendChild(document.createTextNode("Definitions pour " + jsonResponse.name ));
     this.document.getElementById('main_content').appendChild(defSection);
     this.document.getElementById('main_content').appendChild(ol);
   });
